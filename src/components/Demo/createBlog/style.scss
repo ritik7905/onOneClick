@@ -1,0 +1,16 @@
+.create_blog {
+    .container {
+        width: 500px;
+        .form-control {
+            &:focus {
+                border: none;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+        }
+        .btn {
+            background-color: blueviolet;
+            border: none;
+            width: 100%;
+        }
+    }
+}

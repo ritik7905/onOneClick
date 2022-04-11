@@ -1,0 +1,35 @@
+// Signin styles
+.signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    .container {
+        max-width: 500px;
+        .btn {
+            width: 100%;
+            background-color: blueviolet;
+        }
+    }
+    h1 {
+        color: blueviolet;
+    }
+}
+
+// SignIn styles
+.signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    .container {
+        max-width: 500px;
+    }
+    h1 {
+        color: blueviolet;
+    }
+    .btn {
+        width: 100%;
+        background-color: blueviolet;
+    }
+}

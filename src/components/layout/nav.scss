@@ -1,0 +1,39 @@
+.navbar {
+    background-color: white;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+    a {
+        color: gray;
+        text-decoration: none;
+    }
+    .info {
+        justify-content: flex-end;
+    }
+    .auth_links {
+        display: flex;
+        .right {
+            margin: 0;
+            display: flex;
+            list-style: none;
+            float: right;
+            gap: 50px;
+        }
+    }
+    .left {
+        color: blueviolet;
+        font-weight: 500;
+    }
+    .active {
+        position: relative;
+        color: blueviolet;
+        // &:hover {}
+        &::before {
+            position: absolute;
+            content: "";
+            height: 3px;
+            border-radius: 10px;
+            width: 100%;
+            background-color: blueviolet;
+            bottom: -10px;
+        }
+    }
+}
