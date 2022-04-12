@@ -11,6 +11,7 @@ const Signin = () => {
     //Form Submit
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(loginInfo);
     }
 
     // Form Change

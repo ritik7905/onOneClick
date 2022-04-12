@@ -20,7 +20,7 @@ const Navigation = () => {
                     <Navbar.Collapse id="basic-navbar-nav" className='info'>
                         <Nav>
                             <div className="auth_links">
-                                {!logedIn ? <SignedInLink /> : <SignedOutLinks />}
+                                {logedIn ? <SignedInLink /> : <SignedOutLinks />}
                             </div>
                         </Nav>
                     </Navbar.Collapse>

@@ -12,10 +12,17 @@ const Signup = () => {
         email: "",
         password: ""
     })
-
+    // form submit
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(state);
 
+    }
+    // handle change
+    const handleChange = (e) => {
+        setState({
+            ...state, [e.target.name]: e.target.value
+        })
     }
 
     return (
@@ -25,19 +32,19 @@ const Signup = () => {
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3">
                         <Form.Label>First Name:</Form.Label>
-                        <Form.Control type="text" name="firstName" placeholder="Enter first name" />
+                        <Form.Control type="text" name="firstName" value={state.firstName} onChange={handleChange} placeholder="Enter first name" />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Last Name:</Form.Label>
-                        <Form.Control type="text" name="lastName" placeholder="Enter last name" />
+                        <Form.Control type="text" name="lastName" value={state.lastName} onChange={handleChange}  placeholder="Enter last name" />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Email:</Form.Label>
-                        <Form.Control type="text" name="email" placeholder="Enter email" />
+                        <Form.Control type="text" name="email" value={state.email} onChange={handleChange}  placeholder="Enter email" />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Password:</Form.Label>
-                        <Form.Control type="text" name="password" placeholder="Enter password" />
+                        <Form.Control type="text" name="password" value={state.password} onChange={handleChange}  placeholder="Enter password" />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">

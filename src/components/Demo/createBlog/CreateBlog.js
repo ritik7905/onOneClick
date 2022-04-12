@@ -12,11 +12,12 @@ const CreateBlog = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(blogData);
     }
 
     const handleChange = (e) => {
         setBlogData({
-            [e.target.name]: e.target.value
+            ...blogData, [e.target.name]: e.target.value
         })
     }
     return (
