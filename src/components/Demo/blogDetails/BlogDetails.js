@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
+import { connect } from 'react-redux'
 // styles
 import "./style.scss"
 
@@ -23,4 +24,9 @@ const BlogDetails = () => {
     )
 }
 
-export default BlogDetails
+const mapStateToProps = (state)=>{
+    console.log(state);
+    return{}
+}
+
+export default connect(mapStateToProps)(BlogDetails)

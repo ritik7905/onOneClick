@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import createBlog from '../../../Redux/action/BlogAction'
 // styles
 import "./style.scss"
 
-const CreateBlog = () => {
+const CreateBlog = (props) => {
 
     const [blogData, setBlogData] = useState({
         title: "",
@@ -11,6 +13,7 @@ const CreateBlog = () => {
     })
 
     const handleSubmit = (e) => {
+        props.createBlog(blogData)
         e.preventDefault()
         console.log(blogData);
     }
@@ -43,4 +46,15 @@ const CreateBlog = () => {
     )
 }
 
-export default CreateBlog
+const mapDispatchToProps = (dispatch)=>{
+    return {
+        createBlog: (blog)=>{
+            dispatch(createBlog(blog))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateBlog);
+
+
+// export default CreateBlog

@@ -9,7 +9,10 @@ const initialState = {
 const blogReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'CREATE_BLOG':
-            console.log('blog/ created', action.blogs);
+            console.log('blog/ created', action.blog);
+            return state
+        case 'CREATE_BLOG_ERROR':
+            console.log('blog/ ERROR', action.err);
             return state
         default:
             return state

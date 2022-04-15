@@ -8,7 +8,7 @@ import "./nav.scss"
 
 const Navigation = () => {
 
-    const [logedIn, setLogedIn] = useState(true)
+    // const [logedIn, setLogedIn] = useState(true)
     return (
         <>
             <Navbar expand="lg">
@@ -20,7 +20,8 @@ const Navigation = () => {
                     <Navbar.Collapse id="basic-navbar-nav" className='info'>
                         <Nav>
                             <div className="auth_links">
-                                {logedIn ? <SignedInLink /> : <SignedOutLinks />}
+                                <SignedInLink />
+                                <SignedOutLinks />
                             </div>
                         </Nav>
                     </Navbar.Collapse>
