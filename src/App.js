@@ -10,6 +10,7 @@ import Signup from './components/auth/Signup';
 import Signin from './components/auth/Signin';
 import BlogDetails from './components/Demo/blogDetails/BlogDetails';
 import CreateBlog from './components/Demo/createBlog/CreateBlog';
+import EditBlogs from './components/Demo/EditBlogs/EditBlogs';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/createBlog" element={<CreateBlog />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Signin />} />
+          <Route path="/edit/:id" element={<EditBlogs/>} />
         </Routes>
       </div>
     </Router>

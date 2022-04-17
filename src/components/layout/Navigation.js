@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import SignedInLink from './SignedInLink'
+import { connect } from 'react-redux';
 import SignedOutLinks from './SignedOutLinks'
 // styles
 import "./nav.scss"
 
-const Navigation = () => {
+const Navigation = (props) => {
 
-    // const [logedIn, setLogedIn] = useState(true)
+    const { auth, profile } = props;
+    const links = auth.uid ? <SignedInLink profile = {profile} /> : <SignedOutLinks />;
+
+
     return (
         <>
             <Navbar expand="lg">
@@ -20,8 +24,7 @@ const Navigation = () => {
                     <Navbar.Collapse id="basic-navbar-nav" className='info'>
                         <Nav>
                             <div className="auth_links">
-                                <SignedInLink />
-                                <SignedOutLinks />
+                                {auth.isLoaded && links}
                             </div>
                         </Nav>
                     </Navbar.Collapse>
@@ -31,4 +34,12 @@ const Navigation = () => {
     )
 }
 
-export default Navigation
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        auth: state.firebase.auth,
+        profile: state.firebase.profile
+    };
+}
+
+export default connect(mapStateToProps)(Navigation);

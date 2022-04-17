@@ -11,8 +11,8 @@ const BlogLists = ({ blogs }) => {
         blogs && blogs.map((blog) => {
           return (
             <>
-              <Link to={"/blog/" + blog.id} key={blog.id}>
-                <BlogSummary  blog={blog} />
+              <Link to={"/blog/" + blog.id} >
+                <BlogSummary  blog={blog} key={blog.id} />
               </Link>
             </>
           )

@@ -21,17 +21,37 @@ const createBlog = (blog) => {
 }
 
 
-
-// const createBlog = (blog) => {
-//     return (dispatch,getState, {getFirebase, getFirestore}) => {
-//         dispatch(
-//             {
-//                 type: "CREATE_BLOG",
-//                 blog: blog
-//             }
-//         )
-//     }
-// }
-
-// export default createBlog
 export default createBlog
+
+
+// Deleta blog
+
+export const deleteBlog = (id) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore();
+        firestore.collection('blogs')
+            .doc(id)
+            .delete()
+            .then(() => {
+                dispatch({ type: 'DELETE_BLOG' });
+            }).catch((err) => {
+                dispatch({ type: 'DELETE_BLOG_ERROR', err });
+            })
+    }
+}
+
+// Update blog
+
+export const updateBlog = (blog, id) => {
+    return (dispatch, getState, { getFirebase, getFirestore }) => {
+        const firestore = getFirestore();
+        firestore.collection('blogs')
+            .doc(id)
+            .update(blog)
+            .then(() => {
+                dispatch({ type: 'UPDATE_BLOG', blog });
+            }).catch((err) => {
+                dispatch({ type: 'UPDATE_BLOG_ERROR', err });
+            })
+    }
+}

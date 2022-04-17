@@ -1,10 +1,14 @@
 import React, { useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 
+import { signUp } from '../../Redux/action/authAction'
+
+import { connect } from 'react-redux'
+
 // styles
 import "./styles.scss"
 
-const Signup = () => {
+const Signup = (props) => {
 
     const [state, setState] = useState({
         firstName: "",
@@ -15,6 +19,7 @@ const Signup = () => {
     // form submit
     const handleSubmit = (e) => {
         e.preventDefault()
+        props.signUp(state);
         console.log(state);
 
     }
@@ -36,15 +41,15 @@ const Signup = () => {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Last Name:</Form.Label>
-                        <Form.Control type="text" name="lastName" value={state.lastName} onChange={handleChange}  placeholder="Enter last name" />
+                        <Form.Control type="text" name="lastName" value={state.lastName} onChange={handleChange} placeholder="Enter last name" />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Email:</Form.Label>
-                        <Form.Control type="text" name="email" value={state.email} onChange={handleChange}  placeholder="Enter email" />
+                        <Form.Control type="text" name="email" value={state.email} onChange={handleChange} placeholder="Enter email" />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Password:</Form.Label>
-                        <Form.Control type="text" name="password" value={state.password} onChange={handleChange}  placeholder="Enter password" />
+                        <Form.Control type="text" name="password" value={state.password} onChange={handleChange} placeholder="Enter password" />
                     </Form.Group>
 
                     <Button variant="primary" type="submit">
@@ -56,4 +61,12 @@ const Signup = () => {
     )
 }
 
-export default Signup
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signUp: (newUser) => {
+            dispatch(signUp(newUser))
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Signup);

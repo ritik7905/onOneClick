@@ -8,12 +8,24 @@ import { compose } from 'redux';
 class Dashboard extends React.Component {
 
   render() {
-    const { myBlogs } = this.props
+
+    console.log(this.props);
+    const { myBlogs, updateError, auth } = this.props
     console.log(myBlogs);
+
+    if (!auth.uid) {
+      // console.log('you are not logged in');
+      window.location.href = "/login";
+    }
+
     return (
-      <div>
+      <div className='container'>
         <BlogLists blogs={myBlogs} />
+        <div className="red-text center">
+          {updateError ? <p>{updateError}</p> : null}
+        </div>
       </div>
+
     )
   }
 }
@@ -22,8 +34,9 @@ const mapStateToProps = (state) => {
   console.log(state)
   console.log(state.firestore.ordered.blogs)
   return {
-    myBlogs: state.firestore.ordered.blogs
-    // myBlogs: state.blog.blogs
+    myBlogs: state.firestore.ordered.blogs,
+    updateError: state.blog.updateError,
+    auth : state.firebase.auth
   }
 }
 

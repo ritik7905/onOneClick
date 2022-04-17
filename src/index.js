@@ -19,7 +19,7 @@ const store = createStore(rootReducer, compose(applyMiddleware(thunk.withExtraAr
 
 const rrfConfig = {
   userProfile: "users",
-  userFirestoreForProfile: true
+  useFirestoreForProfile: true
 }
 
 const rrfProps = {
