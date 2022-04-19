@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
-
 import { signUp } from '../../Redux/action/authAction'
+import { useNavigate } from 'react-router-dom'
+
 
 import { connect } from 'react-redux'
 
@@ -10,12 +11,20 @@ import "./styles.scss"
 
 const Signup = (props) => {
 
+    const {auth} = props;
+    const navigate = useNavigate();
+
     const [state, setState] = useState({
         firstName: "",
         lastName: "",
         email: "",
         password: ""
     })
+
+    if (auth.uid) {
+        // console.log('you are not logged in');
+        navigate("/")
+    }
     // form submit
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -61,6 +70,13 @@ const Signup = (props) => {
     )
 }
 
+const mapStateToProps = (state) => {
+    return {
+        authError: state.auth.authError,
+        auth: state.firebase.auth
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         signUp: (newUser) => {
@@ -69,4 +85,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

@@ -4,30 +4,31 @@ import BlogLists from '../Demo/bloglists/BlogLists'
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
+import { useNavigate } from 'react-router-dom';
 
-class Dashboard extends React.Component {
+const Dashboard = (props) => {
 
-  render() {
+  const navigate = useNavigate()
 
-    console.log(this.props);
-    const { myBlogs, updateError, auth } = this.props
-    console.log(myBlogs);
+  console.log(props);
+  const { myBlogs, updateError, auth, profile } = props
+  console.log(myBlogs);
 
-    if (!auth.uid) {
-      // console.log('you are not logged in');
-      window.location.href = "/login";
-    }
-
-    return (
-      <div className='container'>
-        <BlogLists blogs={myBlogs} />
-        <div className="red-text center">
-          {updateError ? <p>{updateError}</p> : null}
-        </div>
-      </div>
-
-    )
+  if (!auth.uid) {
+    // console.log('you are not logged in');
+    // window.location.href = "/login";
+    navigate("/login")
   }
+
+  return (
+    <div className='container'>
+      <BlogLists blogs={myBlogs} profiles = {profile} />
+      <div className="red-text center">
+        {updateError ? <p>{updateError}</p> : null}
+      </div>
+    </div>
+
+  )
 }
 
 const mapStateToProps = (state) => {
@@ -36,7 +37,8 @@ const mapStateToProps = (state) => {
   return {
     myBlogs: state.firestore.ordered.blogs,
     updateError: state.blog.updateError,
-    auth : state.firebase.auth
+    auth: state.firebase.auth,
+    profile: state.firebase.profile
   }
 }
 

@@ -1,69 +1,76 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 import { connect } from 'react-redux';
 import { signIn } from '../../Redux/action/authAction';
+import { useNavigate } from 'react-router-dom';
 // Styles
 import "./styles.scss"
 
-class Signin extends Component {
+const Signin = (props) => {
+    const navigate = useNavigate();
+    const { authError, auth } = props
+    const [state, setState] = useState({
+        email: "",
+        password: ""
+    })
 
-    constructor() {
-        super()
-        this.state = {
-            email: "",
-            password: ""
-        }
+
+    if (auth.uid) {
+        // console.log('you are not logged in');
+        navigate("/")
     }
 
     //Form Submit
-    handleSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
-        this.props.signIn(this.state);
-        console.log(this.state);
-        // window.location.href = "/";
+        props.signIn(state);
+        console.log(state);
+        props.history.push('/')
     }
 
+
     // Form Change
-    handleChange = (e) => {
+    const handleChange = (e) => {
         // console.log(e);
-        this.setState({
+        setState({
+            ...state,
             [e.target.name]: e.target.value
         })
     }
 
-    render() {
-        const { authError } = this.props
-        return (
-            <div className='signin'>
-                <Container>
-                    <Form onSubmit={this.handleSubmit}>
-                        <h1>Log In</h1>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Email:</Form.Label>
-                            <Form.Control type="email" value={this.state.email} onChange={this.handleChange} name="email" placeholder="Enter email" />
-                        </Form.Group>
-                        <Form.Group className="mb-3">
-                            <Form.Label>Password:</Form.Label>
-                            <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleChange} placeholder="Enter password" />
-                        </Form.Group>
-                        <Button variant="primary" type="submit">
-                            Login
-                        </Button>
 
-                    </Form>
+    return (
+        <div className='signin'>
+            <Container>
+                <Form onSubmit={handleSubmit}>
+                    <h1>Log In</h1>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email:</Form.Label>
+                        <Form.Control type="email" value={state.email} onChange={handleChange} name="email" placeholder="Enter email" />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password:</Form.Label>
+                        <Form.Control type="password" name="password" value={state.password} onChange={handleChange} placeholder="Enter password" />
+                    </Form.Group>
+                    <Button variant="primary" type="submit">
+                        Login
+                    </Button>
 
-                    <div className="red-text center">
-                        {authError ? <p>{authError}</p> : null}
-                    </div>
-                </Container>
-            </div>
-        )
-    }
+                </Form>
+
+                <div className="red-text center">
+                    {authError ? <p>{authError}</p> : null}
+                </div>
+            </Container>
+        </div>
+    )
 }
 
 const mapStateToProps = (state) => {
+    console.log(state.firebase.auth);
     return {
-        authError: state.auth.authError
+        authError: state.auth.authError,
+        auth: state.firebase.auth
     }
 }
 

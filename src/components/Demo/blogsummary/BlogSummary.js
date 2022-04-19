@@ -1,19 +1,35 @@
 import React from 'react'
+import moment from 'moment';
 import "./style.scss"
+import { connect } from 'react-redux';
 
-const BlogSummary = ({blog}) => {
+const BlogSummary = (props) => {
+    const { profile, blog } = props
     console.log(blog);
+    console.log(profile);
     return (
         <>
             <div className="card">
                 <div className="card-body">
                     <span className="card-title">{blog.title}</span>
-                    <p className='name'>Posted by {blog.authorFirstName}</p>
-                    <p className="time">3rd September, 2am</p>
+                    <p className='name'>Posted by {profile.authorFirstname} {profile.authorLastname}</p>
+                    <p className="time">{moment(blog.createdAt.toDate()).calendar()}</p>
                 </div>
             </div>
         </>
     )
 }
 
-export default BlogSummary
+
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        profile: state.firebase.profile
+    }
+
+
+}
+
+export default connect(mapStateToProps)(BlogSummary);
+
+// export default BlogSummary

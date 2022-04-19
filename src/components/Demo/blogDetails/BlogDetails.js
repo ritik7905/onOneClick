@@ -5,6 +5,8 @@ import {compose} from 'redux';
 import { useParams } from 'react-router-dom';
 import { updateBlog, deleteBlog } from '../../../Redux/action/BlogAction';
 import {useNavigate} from "react-router-dom"
+
+import moment from 'moment';
 // styles
 import "./style.scss"
 
@@ -27,12 +29,13 @@ function BlogDetails(props) {
     console.log(id);
     console.log(props);
     
-    const {blogs} = props;
+    const {blogs, profile} = props;
     console.log(blogs);
+    console.log();
     
     if(blogs){
-        const {title, content, authorFirstName, authorLastName, createdAt} = blogs[id];
-        console.log(title, content, authorFirstName, authorLastName, createdAt);
+        const {title, content,  createdAt} = blogs[id];
+        console.log(title, content,  createdAt);
         return (
             <div className='container section project-details'>
                 <div className='card'>
@@ -43,8 +46,8 @@ function BlogDetails(props) {
                         <p>{content}</p>
                     </div>
                     <div className='card-details'>
-                        <p>Posted by -- {authorFirstName} {authorLastName}  </p>
-                        <p>Created at -- </p>
+                        <p>Posted by -- {profile.authorFirstname} {profile.authorLastname}  </p>
+                        <p>Created at --{moment(createdAt.toDate()).add(10, 'days').calendar()} </p>
                         <button onClick={handleDelete}>Delete</button>{" "} | {" "}<button onClick={handleUpdate}>Update</button>{" "} | {" "}<button onClick={(_) => {
                             window.location.href = "/";
                         }}>All Plans</button>
@@ -65,7 +68,8 @@ const mapStateToProps = (state)=>{
     console.log(state.firestore.data.blogs);
     console.log(state);
     return {
-        blogs: state.firestore.data.blogs
+        blogs: state.firestore.data.blogs,
+        profile: state.firebase.profile
     }
 }
 

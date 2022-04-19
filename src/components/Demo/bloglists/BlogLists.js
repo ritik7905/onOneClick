@@ -8,11 +8,11 @@ const BlogLists = ({ blogs }) => {
   return (
     <div className='card_container'>
       {
-        blogs && blogs.map((blog) => {
+        blogs && blogs.map((blog, id) => {
           return (
             <>
               <Link to={"/blog/" + blog.id} >
-                <BlogSummary  blog={blog} key={blog.id} />
+                <BlogSummary  blog={blog} key={id} />
               </Link>
             </>
           )

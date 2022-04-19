@@ -2,11 +2,13 @@ import { getFirestore } from "redux-firestore";
 const createBlog = (blog) => {
     const firestore = getFirestore(); //it gives us a ref to our db on fb
     return (dispatch, getState, { getFirebase, getFirestore }) => {
+         const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
         firestore.collection('blogs').add({
             ...blog,
-            authorFirstName: 'Venus',
-            authorLastName: 'William',
-            authorId: 12345,
+            authorFirstName: profile.authorFirstname,
+            authorLastName: profile.authorLastname,
+            authorId: authorId,
             createdAt: new Date()
         }).then(() => {
             dispatch({ type: 'CREATE_BLOG', blog });

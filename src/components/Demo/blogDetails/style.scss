@@ -1,7 +1,28 @@
 .project-details {
     .card {
         .card-body {
-            padding: 20px;
+            padding-left: 20px;
+            p {
+                font-size: 30px;
+                color: black;
+                font-weight: 100;
+            }
+            .card-title {
+                font-size: 50px;
+                font-weight: bold;
+            }
+        }
+        .card-details {
+            padding-left: 20px;
+            button {
+                margin-bottom: 20px;
+                background-color: blueviolet;
+                border-radius: 5px;
+                border: none;
+                padding: 5px 10px;
+                color: white;
+                cursor: pointer;
+            }
         }
     }
 }
