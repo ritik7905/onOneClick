@@ -1,6 +1,9 @@
 // styles
 import './styles/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+// import 'antd/dist/antd.less';
+
+
 // Router
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // pages

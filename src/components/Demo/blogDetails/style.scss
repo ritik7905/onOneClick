@@ -1,5 +1,6 @@
 .project-details {
     .card {
+        position: relative;
         .card-body {
             padding-left: 20px;
             p {
@@ -23,6 +24,14 @@
                 color: white;
                 cursor: pointer;
             }
+        }
+        .upload_img {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            // .ant-upload.ant-upload-select-picture-card {
+            //     height: 45px;
+            // }
         }
     }
 }

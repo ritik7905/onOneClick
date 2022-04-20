@@ -5,13 +5,14 @@ import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { useNavigate } from 'react-router-dom';
-
+// styles
+import "./style.scss"
 const Dashboard = (props) => {
 
   const navigate = useNavigate()
 
   console.log(props);
-  const { myBlogs, updateError, auth, profile } = props
+  const { myBlogs, updateError, auth } = props
   console.log(myBlogs);
 
   if (!auth.uid) {
@@ -21,12 +22,18 @@ const Dashboard = (props) => {
   }
 
   return (
-    <div className='container'>
-      <BlogLists blogs={myBlogs} profiles = {profile} />
-      <div className="red-text center">
-        {updateError ? <p>{updateError}</p> : null}
+    <>
+
+      <div className='container'>
+        <div className="dashboard">
+          <BlogLists blogs={myBlogs} />
+          <div className="red-text center">
+            {updateError ? <p>{updateError}</p> : null}
+          </div>
+        </div>
       </div>
-    </div>
+
+    </>
 
   )
 }
@@ -38,7 +45,7 @@ const mapStateToProps = (state) => {
     myBlogs: state.firestore.ordered.blogs,
     updateError: state.blog.updateError,
     auth: state.firebase.auth,
-    profile: state.firebase.profile
+    // profile: state.firebase.profile
   }
 }
 

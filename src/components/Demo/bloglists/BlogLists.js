@@ -12,7 +12,7 @@ const BlogLists = ({ blogs }) => {
           return (
             <>
               <Link to={"/blog/" + blog.id} >
-                <BlogSummary  blog={blog} key={id} />
+                <BlogSummary  blog={blog} key={id} names = {blogs} />
               </Link>
             </>
           )
