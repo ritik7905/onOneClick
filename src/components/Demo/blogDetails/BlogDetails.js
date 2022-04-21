@@ -46,7 +46,7 @@ function BlogDetails(props) {
             <>
 
                 <div className='container section project-details'>
-                    <div className='card'>
+                    <div className='card detail_card'>
                         <div className='card-body'>
                             <span className='card-title'>
                                 {title}

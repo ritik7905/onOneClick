@@ -41,7 +41,7 @@ const CreateBlog = (props) => {
             <div className='create_blog'>
                 <Container>
                     <Form onSubmit={handleSubmit} >
-                        <h1>Create Blog</h1>
+                        <h1 className='title'>Create Blog</h1>
                         <Form.Group className="mb-3">
                             <Form.Label>Blog Title:</Form.Label>
                             <Form.Control type="text" name="title" value={blogData.title} placeholder="Enter title" onChange={handleChange} />

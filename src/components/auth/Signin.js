@@ -43,7 +43,7 @@ const Signin = (props) => {
         <div className='signin'>
             <Container>
                 <Form onSubmit={handleSubmit}>
-                    <h1>Log In</h1>
+                    <h1 className='title'>Log In</h1>
                     <Form.Group className="mb-3">
                         <Form.Label>Email:</Form.Label>
                         <Form.Control type="email" value={state.email} onChange={handleChange} name="email" placeholder="Enter email" />

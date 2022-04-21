@@ -9,7 +9,7 @@ const BlogSummary = (props) => {
     console.log(profile);
     return (
         <>
-            <div className="card">
+            <div className="card blogCard">
                 <div className="card-body">
                     <span className="card-title">{blog.title}</span>
                     <p className='name'>Posted by {blog.authorFirstName} {blog.authorLastName}</p>

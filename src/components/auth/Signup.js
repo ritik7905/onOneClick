@@ -42,8 +42,8 @@ const Signup = (props) => {
     return (
         <div className='signup'>
             <Container>
-                <h1>Sign Up</h1>
                 <Form onSubmit={handleSubmit}>
+                <h1 className='title'>Sign Up</h1>
                     <Form.Group className="mb-3">
                         <Form.Label>First Name:</Form.Label>
                         <Form.Control type="text" name="firstName" value={state.firstName} onChange={handleChange} placeholder="Enter first name" />
